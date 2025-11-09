@@ -1,26 +1,183 @@
 @import "tailwindcss";
 
+/* DatasetDAO Design System -  & Apple Inspired */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Typography - macOS System Fonts */
+  --font-display: -apple-system, "SF Pro Display", BlinkMacSystemFont, Inter, system-ui, sans-serif;
+  --font-body: -apple-system, "SF Pro Text", BlinkMacSystemFont, Inter, system-ui, sans-serif;
+  --font-mono: "SF Mono", Monaco, "Cascadia Code", "Courier New", monospace;
+
+  /* Font Sizes (Apple Scale) */
+  --font-size-display-xl: 4.5rem;
+  --font-size-display-l: 3.5rem;
+  --font-size-display-m: 3rem;
+  --font-size-heading-1: 2.5rem;
+  --font-size-heading-2: 2rem;
+  --font-size-heading-3: 1.5rem;
+  --font-size-heading-4: 1.25rem;
+  --font-size-body-lg: 1.125rem;
+  --font-size-body: 1rem;
+  --font-size-body-sm: 0.875rem;
+  --font-size-caption: 0.75rem;
+
+  /* Colors - Background (Darker  theme) */
+  --color-bg-base: #0A0A0F;
+  --color-bg-elevated: #13131A;
+  --color-bg-surface: #1C1C1E;
+  --color-bg-overlay: #2C2C2E;
+
+  /* Colors - Foreground */
+  --color-fg-primary: #FFFFFF;
+  --color-fg-secondary: #E0E0E0;
+  --color-fg-tertiary: #98989D;
+  --color-fg-disabled: #636366;
+
+  /* Colors - Accents ( Pink/Magenta) */
+  --color-accent-pink: #E6007A;
+  --color-accent-magenta: #FF006B;
+  --color-accent-mesh: #FF0080;
+  --color-accent-secondary: #64D2FF;
+  --color-accent-red: #FF453A;
+
+  /* Legacy green for data/verified elements */
+  --color-accent-green: #30D158;
+  --color-accent-orange: #FF9F0A;
+  --color-accent-teal: #64D2FF;
+
+  /* Borders & Dividers */
+  --color-border-subtle: rgba(230, 0, 122, 0.15);
+  --color-border-default: rgba(230, 0, 122, 0.2);
+  --color-border-strong: rgba(230, 0, 122, 0.4);
+
+  /* Glass Effect */
+  --color-glass-bg: rgba(19, 19, 26, 0.8);
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+
+  /* Shadows (Pink glow) */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3), 0 4px 6px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.4), 0 10px 10px rgba(0, 0, 0, 0.3);
+  --shadow-glow-pink: 0 0 20px rgba(230, 0, 122, 0.4), 0 0 40px rgba(230, 0, 122, 0.2);
+  --shadow-glow-magenta: 0 0 30px rgba(255, 0, 128, 0.5), 0 0 60px rgba(255, 0, 128, 0.3);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg-base);
+  color: var(--color-fg-secondary);
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
+
+/* Smooth scrolling for sections */
+section {
+  scroll-margin-top: 80px;
+}
+
+/* Focus visible styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--color-accent-pink);
+  outline-offset: 2px;
+}
+
+/* Better line height for headings */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--color-fg-primary);
+  text-shadow: 0 2px 20px rgba(255, 255, 255, 0.1);
+}
+
+p, li, span {
+  color: var(--color-fg-secondary);
+}
+
+/* Prevent layout shift */
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Pink glow pulse animation */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(230, 0, 122, 0.4); }
+  50% { box-shadow: 0 0 40px rgba(230, 0, 122, 0.8); }
+}
+
+/* Gradient text shimmer */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.glow-pink {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #FFFFFF 25%, #E6007A 50%, #FFFFFF 75%);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-elevated);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent-pink);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-magenta);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
