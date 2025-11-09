@@ -1,7 +1,6 @@
 'use client';
 
 import { Navbar } from '@/components/ui/Navbar';
-import { Footer } from '@/components/ui/Footer';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
@@ -90,7 +89,6 @@ export default function ProfilePage() {
           </motion.div>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

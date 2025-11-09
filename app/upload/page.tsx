@@ -3,7 +3,6 @@
 import { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Navbar } from '@/components/ui/Navbar';
-import { Footer } from '@/components/ui/Footer';
 import { motion } from 'framer-motion';
 import { useToast } from '@/lib/context/ToastContext';
 import { useCurrentAccount } from '@mysten/dapp-kit';
@@ -234,7 +233,6 @@ export default function UploadPage() {
           </motion.div>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

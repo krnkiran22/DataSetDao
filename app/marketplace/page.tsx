@@ -1,8 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Navbar } from '@/components/ui/Navbar';
-import { Footer } from '@/components/ui/Footer';
+ import { Navbar } from '@/components/ui/Navbar';
 import { FilterSidebar } from '@/components/features/marketplace/FilterSidebar';
 import { DatasetGrid } from '@/components/features/marketplace/DatasetGrid';
 import { motion } from 'framer-motion';
@@ -65,7 +64,6 @@ export default function MarketplacePage() {
           </div>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

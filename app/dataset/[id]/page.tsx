@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { useParams } from 'next/navigation';
 import { Navbar } from '@/components/ui/Navbar';
-import { Footer } from '@/components/ui/Footer';
 import { mockDatasets } from '@/lib/mockData/datasets';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -30,7 +29,6 @@ export default function DatasetDetailPage() {
             </Link>
           </div>
         </main>
-        <Footer />
       </>
     );
   }
@@ -253,7 +251,6 @@ export default function DatasetDetailPage() {
           </motion.div>
         </div>
       </main>
-      <Footer />
     </>
   );
 }
