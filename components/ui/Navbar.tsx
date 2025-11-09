@@ -7,17 +7,21 @@ import { Menu, X } from 'lucide-react';
 import { Button } from './Button';
 import { Logo } from './Logo';
 import { cn } from '@/lib/cn';
+import { ConnectButton, useCurrentAccount } from '@mysten/dapp-kit';
 
 const navLinks = [
   { href: '/marketplace', label: 'Marketplace' },
+  { href: '/upload', label: 'Upload' },
+  { href: '/dashboard', label: 'Dashboard' },
   { href: '/bounties', label: 'Bounties' },
-  { href: '/docs', label: 'Docs' },
-  { href: '/pricing', label: 'Pricing' },
+  { href: '/analytics', label: 'Analytics' },
+  { href: '/profile', label: 'Profile' },
 ];
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const currentAccount = useCurrentAccount();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,13 +64,7 @@ export function Navbar() {
 
           {/* Connect Wallet Button */}
           <div className="hidden md:block">
-            <Button
-              variant="secondary"
-              size="sm"
-              className="!px-6 !py-2.5"
-            >
-              Connect Wallet
-            </Button>
+            <ConnectButton className="!bg-gradient-to-r !from-accent-pink !to-accent-magenta !text-white !font-semibold !px-6 !py-2.5 !rounded-full hover:!shadow-glow-pink !transition-all !duration-200" />
           </div>
 
           {/* Mobile Menu Button */}
@@ -110,9 +108,7 @@ export function Navbar() {
               </nav>
 
               <div className="mt-auto pb-8">
-                <Button variant="primary" className="w-full">
-                  Connect Wallet
-                </Button>
+                <ConnectButton className="!w-full !bg-gradient-to-r !from-accent-pink !to-accent-magenta !text-white !font-semibold !px-6 !py-4 !rounded-full hover:!shadow-glow-pink !transition-all !duration-200" />
               </div>
             </div>
           </motion.div>
