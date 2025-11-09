@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Button } from './Button';
+import { Logo } from './Logo';
 import { cn } from '@/lib/cn';
 
 const navLinks = [
@@ -40,11 +41,8 @@ export function Navbar() {
       >
         <nav className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           {/* Logo & Brand */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-8 h-8 bg-gradient-to-br from-[var(--color-accent-green)] to-[var(--color-accent-teal)] rounded-lg transition-transform group-hover:scale-110" />
-            <span className="text-xl font-display font-semibold text-white">
-              DatasetDAO
-            </span>
+          <Link href="/" className="group">
+            <Logo size="md" showText={true} />
           </Link>
 
           {/* Desktop Navigation */}
@@ -65,7 +63,7 @@ export function Navbar() {
             <Button
               variant="secondary"
               size="sm"
-              className="!px-6 !py-2.5 border-[var(--color-accent-green)]/30 hover:bg-[var(--color-accent-green)]/10"
+              className="!px-6 !py-2.5"
             >
               Connect Wallet
             </Button>
@@ -74,7 +72,7 @@ export function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent-green)]"
+            className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink"
             aria-label="Toggle menu"
             aria-expanded={isOpen}
           >
@@ -104,7 +102,7 @@ export function Navbar() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className="text-2xl font-display font-semibold text-white hover:text-[var(--color-accent-green)] transition-colors"
+                    className="text-2xl font-display font-semibold text-white hover:text-accent-pink transition-colors"
                   >
                     {link.label}
                   </Link>

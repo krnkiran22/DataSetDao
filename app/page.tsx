@@ -1,8 +1,8 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { 
+import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { useRef, useState } from 'react';
+import {
   ShieldAlert, 
   UserX, 
   FileX, 
@@ -20,7 +20,11 @@ import {
   Repeat,
   Rocket,
   Book,
-  Zap
+  Zap,
+  ArrowDown,
+  MoveDown,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react';
 import { Hero } from '@/components/ui/Hero/Hero';
 import { GlassCard } from '@/components/ui/GlassCard';
@@ -163,7 +167,7 @@ function SolutionSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-28 md:mb-36"
         >
-          <span className="font-mono text-xs tracking-widest uppercase text-[var(--color-accent-green)] block mb-6">
+          <span className="font-mono text-xs tracking-widest uppercase text-accent-pink block mb-6">
             THE SOLUTION
           </span>
           <h2 className="font-display text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">
@@ -184,7 +188,7 @@ function SolutionSection() {
               whileHover={{ scale: 1.02 }}
             >
               <GlassCard className="h-full p-10 md:p-12">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[var(--color-accent-green)]/20 to-transparent flex items-center justify-center mb-10">
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-accent-pink/20 to-transparent flex items-center justify-center mb-10">
                   <pillar.icon className="w-10 h-10 text-white" />
                 </div>
                 <h3 className="font-display text-2xl md:text-3xl font-semibold text-white mb-5 leading-tight">
@@ -196,7 +200,7 @@ function SolutionSection() {
                 <div className="space-y-4">
                   {pillar.features.map((feature) => (
                     <div key={feature} className="flex items-start gap-3">
-                      <Check className="w-4 h-4 text-[var(--color-accent-green)] flex-shrink-0 mt-0.5" />
+                      <Check className="w-4 h-4 text-accent-pink flex-shrink-0 mt-0.5" />
                       <span className="font-body text-sm text-[var(--color-fg-secondary)] leading-relaxed">
                         {feature}
                       </span>
@@ -215,51 +219,124 @@ function SolutionSection() {
 function HowItWorksSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const [expandedStep, setExpandedStep] = useState<number | null>(0); // First step open by default
+
+  const toggleStep = (index: number) => {
+    setExpandedStep(expandedStep === index ? null : index);
+  };
 
   return (
-    <section ref={ref} className="min-h-screen py-40 md:py-48 px-6">
-      <div className="max-w-6xl mx-auto">
+    <section ref={ref} className="min-h-screen py-40 md:py-48 px-6 relative">
+      <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-28 md:mb-36"
         >
-          <span className="font-mono text-xs tracking-widest uppercase text-[var(--color-accent-green)] block mb-6">
+          <span className="font-mono text-xs tracking-widest uppercase text-accent-pink block mb-6">
             HOW IT WORKS
           </span>
           <h2 className="font-display text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">
             From Upload to Trade in Six Steps
           </h2>
-          <p className="font-body text-lg md:text-xl text-[var(--color-fg-secondary)] max-w-2xl mx-auto leading-relaxed">
+          <p className="font-body text-lg md:text-xl text-foreground-secondary max-w-2xl mx-auto leading-relaxed">
             A seamless workflow powered by AI and blockchain
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
-          {steps.map((step, index) => (
-            <motion.div
-              key={step.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <div className="relative">
-                <div className="absolute -top-5 -left-5 w-14 h-14 rounded-full bg-[rgba(28,28,30,0.9)] border-2 border-[var(--color-accent-green)] flex items-center justify-center z-10 shadow-lg">
-                  <span className="font-display text-xl font-bold text-white">{index + 1}</span>
+        {/* Vertical Flowchart with Expandable Steps */}
+        <div className="relative max-w-4xl mx-auto">
+          {/* Connecting Line */}
+          <div className="absolute left-10 md:left-12 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent-pink via-accent-magenta to-accent-pink opacity-20"></div>
+
+          {steps.map((step, index) => {
+            const isExpanded = expandedStep === index;
+            return (
+              <motion.div
+                key={step.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="relative mb-6 last:mb-0"
+              >
+                {/* Step Container */}
+                <div className="relative">
+                  {/* Clickable Header */}
+                  <button
+                    onClick={() => toggleStep(index)}
+                    className="w-full text-left group"
+                  >
+                    <div className="flex items-center gap-6 p-6 rounded-2xl bg-glass-bg/60 backdrop-blur-2xl border border-accent-pink/20 hover:border-accent-pink/40 transition-all duration-300 hover:shadow-sm-glow-pink">
+                      {/* Step Number Badge */}
+                      <div className="relative flex-shrink-0">
+                        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-accent-pink to-accent-magenta flex items-center justify-center shadow-glow-pink">
+                          <span className="font-display text-2xl font-bold text-white">{index + 1}</span>
+                        </div>
+                      </div>
+
+                      {/* Step Title and Icon */}
+                      <div className="flex-1 flex items-center gap-6">
+                        <div className="w-14 h-14 rounded-xl bg-accent-pink/10 flex items-center justify-center flex-shrink-0">
+                          <step.icon className="w-7 h-7 text-accent-pink" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="font-display text-xl md:text-2xl font-semibold text-white mb-1 leading-tight group-hover:text-accent-pink transition-colors">
+                            {step.title}
+                          </h3>
+                          <p className="font-body text-sm text-foreground-tertiary">
+                            Click to {isExpanded ? 'collapse' : 'expand'} details
+                          </p>
+                        </div>
+                        
+                        {/* Expand/Collapse Icon */}
+                        <div className="flex-shrink-0">
+                          <motion.div
+                            animate={{ rotate: isExpanded ? 180 : 0 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <ChevronDown className="w-6 h-6 text-accent-pink" />
+                          </motion.div>
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+
+                  {/* Expandable Content */}
+                  <AnimatePresence>
+                    {isExpanded && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: 'easeInOut' }}
+                        className="overflow-hidden"
+                      >
+                        <div className="ml-32 mt-4 p-8 rounded-2xl bg-glass-bg/40 backdrop-blur-xl border border-accent-pink/10">
+                          <p className="font-body text-base text-foreground-secondary leading-relaxed">
+                            {step.description}
+                          </p>
+                          
+                          {/* Additional details or features can go here */}
+                          <div className="mt-6 flex items-center gap-3 text-sm text-accent-pink">
+                            <ArrowDown className="w-4 h-4 animate-bounce" />
+                            <span className="font-medium">Auto-advances to next step</span>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
-                <GlassCard className="p-10 pt-12">
-                  <step.icon className="w-8 h-8 text-[var(--color-accent-green)] mb-6" />
-                  <h3 className="font-display text-xl font-semibold text-white mb-4 leading-tight">
-                    {step.title}
-                  </h3>
-                  <p className="font-body text-sm text-[var(--color-fg-secondary)] leading-[1.7]">
-                    {step.description}
-                  </p>
-                </GlassCard>
-              </div>
-            </motion.div>
-          ))}
+
+                {/* Arrow indicator between steps */}
+                {index < steps.length - 1 && (
+                  <div className="absolute left-10 md:left-12 -bottom-3 flex items-center justify-center z-10">
+                    <div className="w-0.5 h-6 bg-gradient-to-b from-accent-magenta to-transparent"></div>
+                  </div>
+                )}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -273,7 +350,7 @@ function CTASection() {
   return (
     <section ref={ref} className="min-h-[80vh] py-40 md:py-48 px-6 relative overflow-hidden">
       {/* Subtle glow effect */}
-      <div className="absolute inset-0 bg-gradient-radial from-[var(--color-accent-green)]/5 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-radial from-accent-pink/5 via-transparent to-transparent" />
       
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -281,8 +358,8 @@ function CTASection() {
         transition={{ duration: 0.6 }}
         className="max-w-4xl mx-auto text-center relative z-10"
       >
-        <div className="inline-block mb-8 px-5 py-2.5 rounded-full bg-[rgba(28,28,30,0.6)] border border-[var(--color-accent-green)]/30 backdrop-blur-xl">
-          <span className="font-mono text-xs tracking-widest uppercase text-[var(--color-accent-green)]">
+        <div className="inline-block mb-8 px-5 py-2.5 rounded-full bg-glass-bg/60 border border-accent-pink/30 backdrop-blur-xl">
+          <span className="font-mono text-xs tracking-widest uppercase text-accent-pink">
             START TODAY
           </span>
         </div>
@@ -301,7 +378,6 @@ function CTASection() {
             size="lg"
             icon={<Rocket className="w-5 h-5" />}
             iconPosition="right"
-            className="shadow-[var(--shadow-glow-green)]"
           >
             Launch App
           </Button>
@@ -315,21 +391,21 @@ function CTASection() {
           </Button>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-8 md:gap-12 text-sm text-[var(--color-fg-tertiary)]">
+        <div className="flex flex-wrap justify-center gap-8 md:gap-12 text-sm text-foreground-tertiary">
           <div className="flex items-center gap-2.5">
-            <Shield className="w-4 h-4 text-[var(--color-accent-green)]" />
+            <Shield className="w-4 h-4 text-accent-pink" />
             <span>Blockchain Verified</span>
           </div>
           <div className="flex items-center gap-2.5">
-            <Cpu className="w-4 h-4 text-[var(--color-accent-teal)]" />
+            <Cpu className="w-4 h-4 text-accent-teal" />
             <span>AI Powered</span>
           </div>
           <div className="flex items-center gap-2.5">
-            <Lock className="w-4 h-4 text-[var(--color-accent-orange)]" />
+            <Lock className="w-4 h-4 text-accent-magenta" />
             <span>Encrypted Storage</span>
           </div>
           <div className="flex items-center gap-2.5">
-            <Zap className="w-4 h-4 text-[var(--color-accent-green)]" />
+            <Zap className="w-4 h-4 text-accent-pink" />
             <span>Instant Verification</span>
           </div>
         </div>

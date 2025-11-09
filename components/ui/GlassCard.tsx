@@ -19,8 +19,8 @@ export function GlassCard({
   onClick,
   ...props 
 }: GlassCardProps) {
-  const baseClasses = 'bg-[rgba(28,28,30,0.6)] backdrop-blur-2xl border border-white/8 rounded-2xl p-10 transition-all duration-300';
-  const hoverClasses = hover ? 'hover:border-white/12 hover:-translate-y-1' : '';
+  const baseClasses = 'bg-glass-bg/60 backdrop-blur-2xl border border-accent-pink/20 rounded-2xl p-10 transition-all duration-300';
+  const hoverClasses = hover ? 'hover:border-accent-pink/40 hover:-translate-y-1 hover:shadow-sm-glow-pink' : '';
   const clickableClasses = onClick ? 'cursor-pointer' : '';
 
   const classes = cn(baseClasses, hoverClasses, clickableClasses, className);

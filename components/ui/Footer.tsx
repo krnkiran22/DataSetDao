@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { Twitter, Github, MessageCircle, Linkedin, Mail } from 'lucide-react';
+import { Logo } from './Logo';
 
 const footerLinks = {
   product: [
@@ -44,11 +45,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
           {/* Brand Column */}
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-[var(--color-accent-green)] to-[var(--color-accent-teal)] rounded-lg" />
-              <span className="text-xl font-display font-semibold text-white">
-                DatasetDAO
-              </span>
+            <div className="mb-4">
+              <Logo size="md" showText={true} />
             </div>
             <p className="text-sm text-[var(--color-fg-tertiary)] mb-6">
               AI-Verified Datasets

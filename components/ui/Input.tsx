@@ -16,8 +16,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const errorId = error ? `${inputId}-error` : undefined;
     const helpId = helpText ? `${inputId}-help` : undefined;
 
-    const baseClasses = 'w-full bg-[rgba(28,28,30,0.5)] backdrop-blur-xl border border-white/10 focus:border-[var(--color-accent-green)] focus:ring-2 focus:ring-[var(--color-accent-green)]/20 rounded-xl px-4 py-3 text-white placeholder:text-[var(--color-fg-secondary)] transition-all duration-200 focus-visible:outline-none disabled:opacity-50 disabled:cursor-not-allowed';
-    const errorClasses = error ? 'border-[var(--color-accent-red)] focus:border-[var(--color-accent-red)] focus:ring-[var(--color-accent-red)]/20' : '';
+    const baseClasses = 'w-full bg-glass-bg/50 backdrop-blur-xl border border-accent-pink/20 focus:border-accent-pink focus:ring-2 focus:ring-accent-pink/20 rounded-xl px-4 py-3 text-white placeholder:text-foreground-secondary transition-all duration-200 focus-visible:outline-none disabled:opacity-50 disabled:cursor-not-allowed';
+    const errorClasses = error ? 'border-accent-red focus:border-accent-red focus:ring-accent-red/20' : '';
 
     return (
       <div className="w-full">

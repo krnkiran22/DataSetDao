@@ -95,13 +95,13 @@ export function Hero() {
               icon={Database}
               value="1,247+"
               label="Verified Datasets"
-              accent="green"
+              accent="pink"
             />
             <StatCard
               icon={TrendingUp}
               value="$2.3M+"
               label="Total Value Traded"
-              accent="orange"
+              accent="magenta"
             />
             <StatCard
               icon={Sparkles}
