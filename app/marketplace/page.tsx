@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
- import { Navbar } from '@/components/ui/Navbar';
 import { FilterSidebar } from '@/components/features/marketplace/FilterSidebar';
 import { DatasetGrid } from '@/components/features/marketplace/DatasetGrid';
 import { motion } from 'framer-motion';
@@ -21,7 +20,6 @@ export default function MarketplacePage() {
 
   return (
     <>
-      <Navbar />
       <main className="min-h-screen bg-background-base pt-24">
         <div className="container-center py-12">
           {/* Page Header */}

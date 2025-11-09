@@ -1,13 +1,11 @@
 'use client';
 
-import { Navbar } from '@/components/ui/Navbar';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 export default function DashboardPage() {
   return (
     <>
-      <Navbar />
       <main className="min-h-screen bg-background-base pt-24">
         <div className="container-center py-24">
           <motion.div

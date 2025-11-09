@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useParams } from 'next/navigation';
-import { Navbar } from '@/components/ui/Navbar';
 import { mockDatasets } from '@/lib/mockData/datasets';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -18,7 +17,6 @@ export default function DatasetDetailPage() {
   if (!dataset) {
     return (
       <>
-        <Navbar />
         <main className="min-h-screen bg-background-base pt-24 flex items-center justify-center">
           <div className="text-center">
             <h1 className="text-3xl font-bold text-foreground-primary mb-4">Dataset Not Found</h1>
@@ -35,7 +33,6 @@ export default function DatasetDetailPage() {
 
   return (
     <>
-      <Navbar />
       <main className="min-h-screen bg-background-base pt-24">
         <div className="container-center py-12">
           <motion.div

@@ -82,7 +82,8 @@ export function FilterSidebar({ filters, setFilters }: FilterSidebarProps) {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6 }}
-      className="sticky top-24 bg-background-elevated/40 backdrop-blur-xl border border-border-subtle rounded-2xl p-5 max-h-[calc(100vh-8rem)] overflow-y-auto"
+      className="sticky top-24 bg-background-elevated/40 backdrop-blur-xl border border-border-subtle rounded-2xl p-5 max-h-[calc(100vh-8rem)] overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white/10 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:hover:bg-white/20"
+      style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(255,255,255,0.1) transparent' }}
     >
       {/* Search */}
       <div className="mb-6">
