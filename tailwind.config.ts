@@ -66,9 +66,9 @@ const config: Config = {
         },
       },
       boxShadow: {
-        "glow-pink": "0 0 20px rgba(230, 0, 122, 0.4), 0 0 40px rgba(230, 0, 122, 0.2)",
-        "glow-magenta": "0 0 30px rgba(255, 0, 128, 0.5), 0 0 60px rgba(255, 0, 128, 0.3)",
-        "sm-glow-pink": "0 0 10px rgba(230, 0, 122, 0.25)",
+        "glow-pink": "0 0 15px rgba(230, 0, 122, 0.25), 0 0 30px rgba(230, 0, 122, 0.15)",
+        "glow-magenta": "0 0 20px rgba(255, 0, 128, 0.3), 0 0 40px rgba(255, 0, 128, 0.2)",
+        "sm-glow-pink": "0 0 8px rgba(230, 0, 122, 0.2)",
       },
     },
   },

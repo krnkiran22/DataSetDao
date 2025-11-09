@@ -1,11 +1,11 @@
 'use client';
 
-import { ReactNode, HTMLAttributes } from 'react';
+import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/cn';
 import { hoverLift } from '@/lib/motionVariants';
 
-export interface GlassCardProps extends Omit<HTMLAttributes<HTMLDivElement>, 'className'> {
+export interface GlassCardProps {
   children: ReactNode;
   className?: string;
   hover?: boolean;
@@ -17,7 +17,6 @@ export function GlassCard({
   className, 
   hover = true,
   onClick,
-  ...props 
 }: GlassCardProps) {
   const baseClasses = 'bg-glass-bg/60 backdrop-blur-2xl border border-accent-pink/20 rounded-2xl p-10 transition-all duration-300';
   const hoverClasses = hover ? 'hover:border-accent-pink/40 hover:-translate-y-1 hover:shadow-sm-glow-pink' : '';
@@ -41,7 +40,6 @@ export function GlassCard({
             onClick();
           }
         }}
-        {...props}
       >
         {children}
       </motion.div>
@@ -49,7 +47,7 @@ export function GlassCard({
   }
 
   return (
-    <div className={classes} {...props}>
+    <div className={classes}>
       {children}
     </div>
   );

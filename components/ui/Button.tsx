@@ -1,11 +1,11 @@
 'use client';
 
-import { ReactNode, ButtonHTMLAttributes } from 'react';
+import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/cn';
 import { buttonTap } from '@/lib/motionVariants';
 
-export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className'> {
+export interface ButtonProps {
   children: ReactNode;
   variant?: 'primary' | 'secondary' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
@@ -13,6 +13,9 @@ export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
   iconPosition?: 'left' | 'right';
   className?: string;
   ariaLabel?: string;
+  disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
+  onClick?: () => void;
 }
 
 export function Button({
@@ -24,7 +27,8 @@ export function Button({
   className,
   disabled,
   ariaLabel,
-  ...props
+  type = 'button',
+  onClick,
 }: ButtonProps) {
   const baseClasses = 'inline-flex items-center justify-center gap-3 font-semibold rounded-full transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-background-base';
   
@@ -51,10 +55,11 @@ export function Button({
     <motion.button
       className={classes}
       disabled={disabled}
+      type={type}
+      onClick={onClick}
       whileTap={disabled ? undefined : buttonTap}
       aria-label={ariaLabel}
       aria-disabled={disabled}
-      {...props}
     >
       {icon && iconPosition === 'left' && <span className="inline-flex">{icon}</span>}
       {children}

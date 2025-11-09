@@ -52,11 +52,11 @@
   }
   
   .shadow-glow-pink {
-    box-shadow: 0 0 20px rgba(230, 0, 122, 0.4), 0 0 40px rgba(230, 0, 122, 0.2);
+    box-shadow: 0 0 15px rgba(230, 0, 122, 0.25), 0 0 30px rgba(230, 0, 122, 0.15);
   }
   
   .shadow-glow-magenta {
-    box-shadow: 0 0 30px rgba(255, 0, 128, 0.5), 0 0 60px rgba(255, 0, 128, 0.3);
+    box-shadow: 0 0 20px rgba(255, 0, 128, 0.3), 0 0 40px rgba(255, 0, 128, 0.2);
   }
   
   /* Ensure proper centering */

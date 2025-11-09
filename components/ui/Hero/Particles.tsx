@@ -108,6 +108,7 @@ export function Particles({ count = 220, mousePosition }: ParticlesProps) {
             count={count}
             array={positions}
             itemSize={3}
+            args={[positions, 3]}
           />
         </bufferGeometry>
         <pointsMaterial
