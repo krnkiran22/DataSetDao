@@ -24,7 +24,7 @@ export default function ProfilePage() {
             </h1>
 
             <p className="text-xl text-foreground-secondary mb-8">
-              Manage your profile, reputation, and public presence in the DatasetDAO community
+              Manage your profile, reputation, and public presence in the Suitify community
             </p>
 
             <div className="inline-block px-6 py-3 bg-accent-pink/10 border border-accent-pink/30 rounded-full mb-12">
