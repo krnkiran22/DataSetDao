@@ -82,15 +82,15 @@ export function FilterSidebar({ filters, setFilters }: FilterSidebarProps) {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6 }}
-      className="sticky top-24 bg-background-elevated/60 backdrop-blur-2xl border border-accent-pink/20 rounded-2xl p-6 max-h-[calc(100vh-8rem)] overflow-y-auto"
+      className="sticky top-24 bg-background-elevated/40 backdrop-blur-xl border border-border-subtle rounded-2xl p-5 max-h-[calc(100vh-8rem)] overflow-y-auto"
     >
       {/* Search */}
-      <div className="mb-8">
-        <label className="block text-sm font-semibold text-foreground-primary mb-3">
+      <div className="mb-6">
+        <label className="block text-sm font-semibold text-foreground-primary mb-2">
           Search
         </label>
         <div className="relative">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="absolute left-3 top-1/2 -translate-y-1/2 text-foreground-tertiary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="absolute left-3 top-1/2 -translate-y-1/2 text-foreground-tertiary">
             <circle cx="11" cy="11" r="8"/>
             <path d="m21 21-4.3-4.3"/>
           </svg>
@@ -105,26 +105,26 @@ export function FilterSidebar({ filters, setFilters }: FilterSidebarProps) {
               }, 300);
               return () => clearTimeout(timeout);
             }}
-            className="pl-10"
+            className="pl-10 bg-background-surface/60 border-border-DEFAULT focus:border-foreground-tertiary focus:ring-0"
           />
         </div>
       </div>
 
       {/* Quality Score Range */}
-      <div className="mb-8">
-        <label className="block text-sm font-semibold text-foreground-primary mb-3">
+      <div className="mb-6">
+        <label className="block text-sm font-semibold text-foreground-primary mb-2">
           Quality Score
         </label>
-        <div className="space-y-3">
+        <div className="space-y-2">
           <input
             type="range"
             min="0"
             max="100"
             value={filters.qualityRange[1]}
             onChange={(e) => setFilters(prev => ({ ...prev, qualityRange: [0, parseInt(e.target.value)] }))}
-            className="w-full h-2 bg-border-DEFAULT rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-accent-pink [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:bg-accent-pink [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:cursor-pointer"
+            className="w-full h-2 bg-background-surface rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-accent-pink [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:bg-accent-pink [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:cursor-pointer"
           />
-          <div className="flex justify-between text-sm text-foreground-secondary">
+          <div className="flex justify-between text-xs text-foreground-secondary">
             <span>{filters.qualityRange[0]}</span>
             <span>{filters.qualityRange[1]}</span>
           </div>
@@ -132,11 +132,11 @@ export function FilterSidebar({ filters, setFilters }: FilterSidebarProps) {
       </div>
 
       {/* Price Range */}
-      <div className="mb-8">
-        <label className="block text-sm font-semibold text-foreground-primary mb-3">
+      <div className="mb-6">
+        <label className="block text-sm font-semibold text-foreground-primary mb-2">
           Price Range
         </label>
-        <div className="space-y-3">
+        <div className="space-y-2">
           <input
             type="range"
             min="0"
@@ -144,9 +144,9 @@ export function FilterSidebar({ filters, setFilters }: FilterSidebarProps) {
             step="100"
             value={filters.priceRange[1]}
             onChange={(e) => setFilters(prev => ({ ...prev, priceRange: [0, parseInt(e.target.value)] }))}
-            className="w-full h-2 bg-border-DEFAULT rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-accent-orange [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:bg-accent-orange [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:cursor-pointer"
+            className="w-full h-2 bg-background-surface rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-accent-orange [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:bg-accent-orange [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:cursor-pointer"
           />
-          <div className="flex justify-between text-sm text-foreground-secondary">
+          <div className="flex justify-between text-xs text-foreground-secondary">
             <span>${filters.priceRange[0]}</span>
             <span>${filters.priceRange[1]}{filters.priceRange[1] >= 10000 ? '+' : ''}</span>
           </div>
@@ -154,32 +154,32 @@ export function FilterSidebar({ filters, setFilters }: FilterSidebarProps) {
       </div>
 
       {/* Category Checkboxes */}
-      <div className="mb-8">
-        <label className="block text-sm font-semibold text-foreground-primary mb-3">
+      <div className="mb-6">
+        <label className="block text-sm font-semibold text-foreground-primary mb-2">
           Category
         </label>
-        <div className="space-y-2 max-h-60 overflow-y-auto">
+        <div className="space-y-1.5 max-h-60 overflow-y-auto">
           {categories.map(category => (
             <label
               key={category.id}
-              className="flex items-center gap-3 p-2 rounded-lg hover:bg-background-surface/40 cursor-pointer transition-colors"
+              className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-background-surface/40 cursor-pointer transition-colors"
             >
               <div className="relative">
                 <input
                   type="checkbox"
                   checked={filters.categories.includes(category.id)}
                   onChange={() => toggleCategory(category.id)}
-                  className="w-5 h-5 rounded border-2 border-border-DEFAULT appearance-none checked:bg-accent-pink checked:border-accent-pink cursor-pointer transition-all"
+                  className="w-4 h-4 rounded border-2 border-border-DEFAULT appearance-none checked:bg-accent-pink checked:border-accent-pink cursor-pointer transition-all"
                 />
                 {filters.categories.includes(category.id) && (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
                     <polyline points="20 6 9 17 4 12"/>
                   </svg>
                 )}
               </div>
               <span dangerouslySetInnerHTML={{ __html: category.icon }} className="text-foreground-secondary flex-shrink-0" />
               <span className="text-sm text-foreground-primary flex-1">{category.label}</span>
-              <span className="text-xs text-foreground-tertiary bg-background-surface px-2 py-1 rounded-full">
+              <span className="text-xs text-foreground-tertiary bg-background-surface px-2 py-0.5 rounded-full">
                 {category.count}
               </span>
             </label>
@@ -188,15 +188,15 @@ export function FilterSidebar({ filters, setFilters }: FilterSidebarProps) {
       </div>
 
       {/* Data Size Radio */}
-      <div className="mb-8">
-        <label className="block text-sm font-semibold text-foreground-primary mb-3">
+      <div className="mb-6">
+        <label className="block text-sm font-semibold text-foreground-primary mb-2">
           Data Size
         </label>
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           {dataSizes.map(size => (
             <label
               key={size.id}
-              className="flex items-center gap-3 p-2 rounded-lg hover:bg-background-surface/40 cursor-pointer transition-colors"
+              className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-background-surface/40 cursor-pointer transition-colors"
             >
               <div className="relative">
                 <input
@@ -204,10 +204,10 @@ export function FilterSidebar({ filters, setFilters }: FilterSidebarProps) {
                   name="dataSize"
                   checked={filters.dataSize === size.id}
                   onChange={() => setFilters(prev => ({ ...prev, dataSize: size.id }))}
-                  className="w-5 h-5 rounded-full border-2 border-border-DEFAULT appearance-none checked:border-accent-pink cursor-pointer transition-all"
+                  className="w-4 h-4 rounded-full border-2 border-border-DEFAULT appearance-none checked:border-accent-pink cursor-pointer transition-all"
                 />
                 {filters.dataSize === size.id && (
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-accent-pink rounded-full pointer-events-none" />
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-accent-pink rounded-full pointer-events-none" />
                 )}
               </div>
               <span className="text-sm text-foreground-primary">{size.label}</span>
@@ -217,25 +217,25 @@ export function FilterSidebar({ filters, setFilters }: FilterSidebarProps) {
       </div>
 
       {/* Verification Status */}
-      <div className="mb-8">
-        <label className="block text-sm font-semibold text-foreground-primary mb-3">
+      <div className="mb-6">
+        <label className="block text-sm font-semibold text-foreground-primary mb-2">
           Verification
         </label>
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           {verificationTypes.map(type => (
             <label
               key={type.id}
-              className="flex items-center gap-3 p-2 rounded-lg hover:bg-background-surface/40 cursor-pointer transition-colors"
+              className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-background-surface/40 cursor-pointer transition-colors"
             >
               <div className="relative">
                 <input
                   type="checkbox"
                   checked={filters.verification.includes(type.id)}
                   onChange={() => toggleVerification(type.id)}
-                  className="w-5 h-5 rounded border-2 border-border-DEFAULT appearance-none checked:bg-accent-pink checked:border-accent-pink cursor-pointer transition-all"
+                  className="w-4 h-4 rounded border-2 border-border-DEFAULT appearance-none checked:bg-accent-pink checked:border-accent-pink cursor-pointer transition-all"
                 />
                 {filters.verification.includes(type.id) && (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
                     <polyline points="20 6 9 17 4 12"/>
                   </svg>
                 )}
@@ -249,14 +249,14 @@ export function FilterSidebar({ filters, setFilters }: FilterSidebarProps) {
 
       {/* Active Filters Summary */}
       {activeFiltersCount > 0 && (
-        <div className="pt-6 border-t border-border-subtle">
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-sm font-semibold text-foreground-primary">
+        <div className="pt-4 border-t border-border-subtle">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-xs font-semibold text-foreground-primary">
               Active Filters ({activeFiltersCount})
             </span>
             <button
               onClick={clearAllFilters}
-              className="text-sm text-accent-pink hover:text-accent-magenta underline transition-colors"
+              className="text-xs text-accent-pink hover:text-accent-magenta underline transition-colors"
             >
               Clear All
             </button>

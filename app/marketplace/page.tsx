@@ -52,14 +52,14 @@ export default function MarketplacePage() {
           </button>
 
           {/* Main Content */}
-          <div className="flex flex-col lg:flex-row gap-8">
+          <div className="flex flex-col lg:flex-row gap-6">
             {/* Filter Sidebar */}
-            <aside className={`lg:w-80 ${mobileFiltersOpen ? 'block' : 'hidden lg:block'}`}>
+            <aside className={`lg:w-64 flex-shrink-0 ${mobileFiltersOpen ? 'block' : 'hidden lg:block'}`}>
               <FilterSidebar filters={filters} setFilters={setFilters} />
             </aside>
 
             {/* Dataset Grid */}
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
               <DatasetGrid filters={filters} sortBy={sortBy} setSortBy={setSortBy} />
             </div>
           </div>

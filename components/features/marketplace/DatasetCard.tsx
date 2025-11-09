@@ -91,7 +91,7 @@ export function DatasetCard({ dataset, index }: DatasetCardProps) {
       <Link href={`/dataset/${dataset.id}`}>
         <GlassCard
           hover={true}
-          className="group h-full flex flex-col overflow-hidden hover:shadow-sm-glow-pink transition-all duration-300"
+          className="group h-full flex flex-col overflow-hidden hover:shadow-md transition-all duration-300"
         >
           {/* Certification Badges */}
           <div className="absolute top-4 right-4 z-10 flex flex-col gap-2">
