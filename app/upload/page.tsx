@@ -7,7 +7,7 @@ import { useToast } from '@/lib/context/ToastContext';
 import { useCurrentAccount, useSignAndExecuteTransaction } from '@mysten/dapp-kit';
 import { walrusService } from '@/lib/walrus/walrusService';
 import { analyzeDataset, canAnalyzeFile, readJsonFile, type DatasetAnalysis } from '@/lib/ai/groqService';
-import { mintDatasetCertificate, getExplorerUrl, getNFTExplorerUrl, isContractConfigured } from '@/lib/contract/nftService';
+import { buildMintTransaction, getExplorerUrl, getNFTExplorerUrl, isContractConfigured } from '@/lib/contract/nftService';
 
 export default function UploadPage() {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
@@ -201,43 +201,72 @@ export default function UploadPage() {
     try {
       console.log('🎨 Minting NFT Certificate...');
       
-      const result = await mintDatasetCertificate(
-        {
-          title: datasetTitle.trim(),
-          qualityScore: aiAnalysis.qualityScore,
-          diversityScore: aiAnalysis.diversity,
-          accuracyScore: aiAnalysis.accuracy,
-          completenessScore: aiAnalysis.completeness,
-          consistencyScore: aiAnalysis.consistency,
-          biasLevel: aiAnalysis.bias,
-          blobId: blobId,
-          datasetType: uploadedFile.type || 'application/octet-stream',
-          datasetSize: uploadedFile.size,
-          totalRecords: aiAnalysis.statistics.totalRecords,
-        },
-        signAndExecute
-      );
+      // Build transaction with simplified metadata (no strings!)
+      const tx = buildMintTransaction({
+        qualityScore: aiAnalysis.qualityScore,
+        diversityScore: aiAnalysis.diversity,
+        accuracyScore: aiAnalysis.accuracy,
+        completenessScore: aiAnalysis.completeness,
+        consistencyScore: aiAnalysis.consistency,
+        biasLevel: aiAnalysis.bias,
+        datasetSize: uploadedFile.size,
+        totalRecords: aiAnalysis.statistics.totalRecords,
+      });
 
-      if (result.success) {
-        setMintedNFT({
-          digest: result.transactionDigest!,
-          nftId: result.nftId,
-        });
-        showToast('NFT Certificate minted successfully! 🎉', 'success');
-        console.log('✅ NFT Minted!');
-        console.log('📝 Transaction:', result.transactionDigest);
-        if (result.nftId) {
-          console.log('🆔 NFT ID:', result.nftId);
+      console.log('📤 Sending transaction to wallet...');
+
+      // Sign and execute transaction with modern SDK
+      signAndExecute(
+        {
+          transaction: tx,
+        },
+        {
+          onSuccess: (result: any) => {
+            console.log('✅ NFT Minted Successfully!');
+            console.log('📝 Transaction:', result.digest);
+            
+            const nftId = result.effects?.created?.find((obj: any) => 
+              obj.owner && typeof obj.owner === 'object' && 'AddressOwner' in obj.owner
+            )?.reference?.objectId;
+
+            setMintedNFT({
+              digest: result.digest,
+              nftId,
+            });
+            showToast('NFT Certificate minted successfully! 🎉', 'success');
+            setIsMinting(false);
+            
+            if (nftId) {
+              console.log('🆔 NFT ID:', nftId);
+            }
+          },
+          onError: (error: any) => {
+            console.error('❌ Transaction failed:', error);
+            showToast(`Failed to mint NFT: ${error.message}`, 'error');
+            setIsMinting(false);
+          },
         }
-      } else {
-        throw new Error(result.error || 'Minting failed');
-      }
+      );
     } catch (error) {
       console.error('❌ NFT minting error:', error);
-      showToast(
-        error instanceof Error ? error.message : 'Failed to mint NFT',
-        'error'
-      );
+      
+      // Provide more specific error messages
+      let errorMessage = 'Failed to mint NFT';
+      
+      if (error instanceof Error) {
+        errorMessage = error.message;
+        
+        // Add helpful context for common errors
+        if (error.message.includes('rejected') || error.message.includes('denied')) {
+          errorMessage = 'Transaction was rejected. Please approve in your wallet.';
+        } else if (error.message.includes('insufficient') || error.message.includes('gas')) {
+          errorMessage = 'Insufficient gas. Please get devnet SUI from the faucet.';
+        } else if (error.message.includes('network')) {
+          errorMessage = 'Network error. Make sure your wallet is connected to Devnet.';
+        }
+      }
+      
+      showToast(errorMessage, 'error');
     } finally {
       setIsMinting(false);
     }
