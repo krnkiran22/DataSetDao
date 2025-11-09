@@ -9,7 +9,7 @@ import { Transaction } from '@mysten/sui/transactions';
 // CONTRACT DEPLOYED ON SUI DEVNET - V4 (MINIMAL - No string params!)
 // Transaction: 6YdmB5g5r1ZU3poKfDNjHFsR6yFXWtvUSRfr6D1zR7zM
 // Uses mint_simple_certificate - only numeric parameters!
-const PACKAGE_ID: string = '0x9b089b46018752195f260d485db1c1413d4af0841b61b37b293e542816f13fec';
+const PACKAGE_ID: string = '0x39b6bcf207724ea777226d38d13820f929b8c8b9ae055718715b9f50e3d6eac0';
 const MODULE_NAME = 'dataset_nft';
 const CLOCK_OBJECT_ID = '0x6'; // Sui Clock object (fixed address)
 

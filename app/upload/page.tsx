@@ -201,7 +201,7 @@ export default function UploadPage() {
     try {
       console.log('🎨 Minting NFT Certificate...');
       
-      // Build transaction with simplified metadata (no strings!)
+    // Build transaction with simplified metadata (no strings!)
       const tx = buildMintTransaction({
         qualityScore: aiAnalysis.qualityScore,
         diversityScore: aiAnalysis.diversity,
