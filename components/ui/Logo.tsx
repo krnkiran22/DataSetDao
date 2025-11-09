@@ -1,6 +1,6 @@
 'use client';
 
-import { Database } from 'lucide-react';
+import Image from 'next/image';
 
 export interface LogoProps {
   className?: string;
@@ -23,10 +23,17 @@ export function Logo({ className = '', showText = true, size = 'md' }: LogoProps
 
   return (
     <div className={`flex items-center gap-3 ${className}`}>
-      {/* Logo Icon - Gradient Box with Database Icon */}
+      {/* Logo Icon - Using logo.jpg */}
       <div className="relative group">
-        <div className={`${sizeClasses[size]} rounded-xl bg-gradient-to-br from-accent-pink via-accent-magenta to-accent-mesh flex items-center justify-center shadow-glow-pink transition-all duration-300 group-hover:scale-110 group-hover:shadow-glow-magenta`}>
-          <Database className="w-[60%] h-[60%] text-white" strokeWidth={2.5} />
+        <div className={`${sizeClasses[size]} rounded-xl overflow-hidden shadow-glow-pink transition-all duration-300 group-hover:scale-110 group-hover:shadow-glow-magenta`}>
+          <Image
+            src="/logo.jpg"
+            alt="Suitify Logo"
+            width={48}
+            height={48}
+            className="w-full h-full object-cover"
+            priority
+          />
         </div>
         {/* Animated glow effect */}
         <div className={`absolute inset-0 ${sizeClasses[size]} rounded-xl bg-gradient-to-br from-accent-pink to-accent-magenta opacity-0 group-hover:opacity-50 blur-xl transition-opacity duration-300`}></div>
@@ -35,7 +42,7 @@ export function Logo({ className = '', showText = true, size = 'md' }: LogoProps
       {/* Logo Text */}
       {showText && (
         <span className={`${textSizeClasses[size]} font-display font-bold text-white tracking-tight`}>
-          DatasetDAO
+          Suitify
         </span>
       )}
     </div>

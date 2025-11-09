@@ -1,8 +1,10 @@
-# DatasetDAO
+# Suitify
 
-# DatasetDAO - AI-Verified Dataset Marketplace
+# Suitify - Certify Your Data on Sui
 
 A decentralized marketplace for high-quality, AI-verified datasets built on Sui blockchain with Walrus storage.
+
+**🌐 Live Demo**: [https://suitifyy.vercel.app](https://suitifyy.vercel.app)
 
 ## 🌟 Features
 

@@ -49,7 +49,7 @@ export function Footer() {
               <Logo size="md" showText={true} />
             </div>
             <p className="text-sm text-[var(--color-fg-tertiary)] mb-6">
-              AI-Verified Datasets
+              Certify Your Data on Sui
             </p>
             
             {/* Social Icons */}
@@ -128,7 +128,7 @@ export function Footer() {
         {/* Bottom Section */}
         <div className="mt-16 pt-8 border-t border-white/6 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-[var(--color-fg-tertiary)]">
-            © 2025 DatasetDAO. All rights reserved.
+            © 2025 Suitify. All rights reserved.
           </p>
           <div className="flex items-center gap-4 text-sm">
             <Link href="/privacy" className="text-[var(--color-fg-secondary)] hover:text-white transition-colors">

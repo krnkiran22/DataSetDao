@@ -171,10 +171,10 @@ function SolutionSection() {
             THE SOLUTION
           </span>
           <h2 className="font-display text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">
-            DatasetDAO: Trust Through Verification
+            Suitify: Certify Your Data on Sui
           </h2>
           <p className="font-body text-lg md:text-xl text-[var(--color-fg-secondary)] max-w-3xl mx-auto leading-relaxed">
-            Combining AI quality verification with blockchain certification to create the world's first trustless dataset marketplace.
+            Combining AI quality verification with blockchain certification to create the world's first trustless dataset marketplace on Sui.
           </p>
         </motion.div>
 

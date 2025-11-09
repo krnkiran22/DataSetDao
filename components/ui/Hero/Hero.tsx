@@ -59,8 +59,7 @@ export function Hero() {
             variants={fadeInUp}
             className="font-body text-lg md:text-xl text-[var(--color-fg-secondary)] max-w-3xl mx-auto leading-[1.7] px-4"
           >
-            The first marketplace where AI verification meets blockchain certification. 
-            Buy and sell datasets with confidence.
+            AI-verified, blockchain-certified dataset marketplace on Sui. Trade datasets with provable quality and decentralized storage.
           </motion.p>
 
           {/* CTA Buttons */}
